@@ -10,6 +10,7 @@ type Props = {
     color?: string;
 }
 
+
 export const CustomButton = ({buttonTitle, onPress, disabled, style, color}: Props) =>{
   return (
     <Pressable

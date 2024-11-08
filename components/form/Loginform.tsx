@@ -3,18 +3,44 @@ import React, { useState } from 'react'
 import CustomInput from './CustomInput'
 import CustomButton from '../ui/CustomButton'
 
+import { validateEmail, validatePassword } from '@/utils'
+
 
 export const Loginform = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [errorEmail, setErrorEmail] = useState('')
+  const [errorPassword, setErrorPassword] = useState('');
+  const [secure, setSecure] = useState(true)
+  const toggleSecure = () => setSecure((prev) => !prev)
 
   const handleEmailChange = (text: string) => {setEmail(text)}
   const handlePasswordChange = (text: string) =>{
     setPassword(text);
   }
   const handleSubmit = () => {
-    console.log({ email, password})
+   if (!validateEmail(email)) {
+     setErrorEmail('Please enter a valid email address');
+     
+   }
+   if (!validatePassword(password)) {
+     setErrorPassword('Password must include at least one uppercase letter, one lowercase letter, one number, and one special character');
+     return ;     
   }
+
+
+    console.log({ 
+      email,
+       password,
+      })
+
+      setEmail('')
+      setPassword('')
+      setErrorEmail('')
+      setErrorPassword('')
+  }
+
+  const disabled = email.trim() === '' || password.trim() === ''
     
   return (
     <View style={styles.container}>
@@ -23,6 +49,7 @@ export const Loginform = () => {
   keyboardType='email-address'
    value={email}
   onChangeText={handleEmailChange}
+  error={errorEmail}
   />
   <CustomInput
   label= 'Password'
@@ -30,15 +57,18 @@ export const Loginform = () => {
   keyboardType='email-address'
   onChangeText={handlePasswordChange}
   value={password}
-  secureTextEntry/>
+  secureTextEntry={secure}
+  error={errorPassword}
+  toggleSecure={toggleSecure}
+  password
+  />
 
-  <CustomButton buttonTitle='Sign in' onPress={handleSubmit}/>
+  <CustomButton disabled={disabled} buttonTitle='Sign in' onPress={handleSubmit}/>
   </View>
   );
 }
 
 
-export default Loginform
 
 
 const styles = StyleSheet.create({
@@ -47,3 +77,4 @@ const styles = StyleSheet.create({
       marginTop: 20,
   }
 })
+
