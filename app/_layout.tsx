@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { Toaster } from 'sonner-native';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -27,6 +28,9 @@ export default function RootLayout() {
   }
 
   return (
-   <Stack screenOptions={{ headerShown: false }} />
+    <>
+   <Stack screenOptions={{ headerShown: false, }} />
+   <Toaster/>
+   </>
   );
 }
