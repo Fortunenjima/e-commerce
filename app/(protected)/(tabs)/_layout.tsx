@@ -16,7 +16,8 @@ return (
     tabBarActiveTintColor: colors.yellow,
     headerTintColor: colors.yellow,
     headerStyle: { backgroundColor: colors.dark },
-    headerRight: () => <CartIcon/>
+    headerRight: () => <CartIcon/>,
+    tabBarHideOnKeyboard: true,
 }}>
         <Tabs.Screen name="index" options={{ title: "",
         tabBarLabel: "Home",
