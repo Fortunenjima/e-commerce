@@ -1,9 +1,9 @@
-import { router, Stack } from "expo-router";
+import { router, Stack, useRouter } from "expo-router";
 import React from "react";
 import { Pressable, Text } from "react-native";
 
 const _layout = () => {
-
+const router = useRouter();
   const onPress = () => {
     router.back();
   }
