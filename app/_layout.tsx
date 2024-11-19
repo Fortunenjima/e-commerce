@@ -3,6 +3,7 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import 'react-native-reanimated';
 
 import { Toaster } from 'sonner-native';
@@ -27,10 +28,12 @@ export default function Layout() {
   
   return (
     <>
+    <GestureHandlerRootView style={{ flex: 1 }}>
     <QueryClientProvider client={queryClient}>
    <Stack screenOptions={{ headerShown: false, }} />
    </QueryClientProvider>
    <Toaster/>
+   </GestureHandlerRootView>
    </>
   );
 }
